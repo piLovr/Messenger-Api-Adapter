@@ -1,5 +1,5 @@
 # Bot-Adapter
-A collection of adapters and utilities for integrating various bot frameworks like Cobalt, JDA (Discord bot), and other bot platforms. These adapters act as bridges to unify command handling, message parsing, and event-driven logic across different bot frameworks.
+A collection of adapterStuff and utilities for integrating various bot frameworks like Cobalt, JDA (Discord bot), and other bot platforms. These adapterStuff act as bridges to unify command handling, message parsing, and event-driven logic across different bot frameworks.
 
 	Features
 		•	Unified interface for managing commands and events across multiple bot frameworks.
@@ -16,7 +16,7 @@ A collection of adapters and utilities for integrating various bot frameworks li
 
 	Contributions are welcome! Feel free to submit pull requests for additional frameworks, enhancements, or bug fixes.
 
-bot-adapters/
+bot-adapterStuff/
 ├── src/
 │   ├── cobalt/
 │   │   ├── CobaltAdapter.java        # Core adapter for Cobalt
@@ -32,7 +32,7 @@ bot-adapters/
 │   │   ├── Command.java              # Generic command interface
 │   │   ├── CommandRegistry.java      # Registry for managing commands
 │   │   ├── EventListener.java        # Generic event listener interface
-│   │   └── BotAdapter.java           # Abstract class for bot adapters
+│   │   └── BotAdapter.java           # Abstract class for bot adapterStuff
 │   └── utils/
 │       ├── MessageParser.java        # Common message parsing utilities
 │       ├── ConfigLoader.java         # Utility for loading configuration files
@@ -51,7 +51,7 @@ bot-adapters/
 ├── docs/
 │   ├── setup.md                      # Instructions for setting up the repository
 │   ├── contribution.md               # Guide for contributing to the project
-│   └── adapters.md                   # Overview of supported bot frameworks
+│   └── adapterStuff.md                   # Overview of supported bot frameworks
 ├── .gitignore                        # Git ignore file
 ├── README.md                         # Main README for the repository
 ├── LICENSE                           # License file
@@ -60,6 +60,6 @@ bot-adapters/
 Notes:
 	1.	Modularity: Each bot framework has its own subfolder under src/ for clear separation and easy maintainability.
 	2.	Common Utilities: A common/ directory centralizes shared functionality like command handling and logging.
-	3.	Examples: Practical examples are provided to showcase how the adapters can be used.
+	3.	Examples: Practical examples are provided to showcase how the adapterStuff can be used.
 	4.	Tests: A dedicated tests/ directory ensures the code is well-tested and production-ready.
 	5.	Docs: Includes detailed setup, contribution, and framework-specific documentation.
