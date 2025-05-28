@@ -4,7 +4,7 @@ import com.piLovr.messengerAdapters.whatsapp.WhatsappListener;
 import com.piLovr.messengerAdapters.whatsapp.WhatsappSocket;
 import it.auties.whatsapp.api.MobileOptionsBuilder;
 import it.auties.whatsapp.api.QrHandler;
-import it.auties.whatsapp.api.WebHistorySetting;
+//import it.auties.whatsapp.api.WebHistorySetting;
 import it.auties.whatsapp.api.Whatsapp;
 import it.auties.whatsapp.model.companion.CompanionDevice;
 import it.auties.whatsapp.model.mobile.VerificationCodeMethod;

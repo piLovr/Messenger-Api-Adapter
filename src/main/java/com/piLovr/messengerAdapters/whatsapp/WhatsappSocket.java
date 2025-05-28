@@ -3,17 +3,22 @@ package com.piLovr.messengerAdapters.whatsapp;
 import com.piLovr.messengerAdapters.Socket;
 import com.piLovr.messengerAdapters.adapters.Message;
 import com.piLovr.messengerAdapters.adapters.MessageBuilder;
-import it.auties.whatsapp.api.QrHandler;
 import it.auties.whatsapp.api.WebHistorySetting;
 import it.auties.whatsapp.api.Whatsapp;
+import it.auties.whatsapp.model.info.ChatMessageInfo;
+
+import java.util.UUID;
 
 public class WhatsappSocket extends Socket {
     protected Whatsapp sock;
     public WhatsappSocket(String alias) {
-         this.sock = Whatsapp.webBuilder()
-                .newConnection(alias)
+        UUID uuid = UUID.fromString("8ffb15c9-c20a-4a8f-9483-7920a530cbd2");
+        System.out.println(uuid);
+        this.sock = Whatsapp.webBuilder()
+                .newConnection(uuid)
                 .historySetting(WebHistorySetting.discard(false))
                 .unregistered(QrHandler.toTerminal());
+
         //.unregistered(phoneNumber, PairingCodeHandler.toTerminal())
     }
 
@@ -24,7 +29,10 @@ public class WhatsappSocket extends Socket {
     public void connect() {
         sock.addListener(new WhatsappListener());
         sock.connect().join();
-        new Thread(() -> sock.awaitDisconnection()).start();
+        this.connected = true;
+        sock.awaitDisconnection();
+        //new Thread(() -> sock.awaitDisconnection()).start();
+        System.out.println("Connected to Whatsapp");
     }
 
     @Override

@@ -20,7 +20,7 @@ public class DiscordMessage extends Message {
         this.id = event.getMessageId();
 
         this.pushName = baseMessage.getAuthor().getName();
-        List<Attachment> attachments = baseMessage.getAttachments(); //type lol
+        this.attachments = null; //baseMessage.getAttachments(); //type lol
 
         //this.quotedMessage
 

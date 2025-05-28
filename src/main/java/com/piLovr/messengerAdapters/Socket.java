@@ -1,5 +1,9 @@
 package com.piLovr.messengerAdapters;
 
+import lombok.Getter;
+
+@Getter
 public abstract class Socket implements UnifiedSocket {
-    String alias;
+    protected String alias;
+    protected boolean connected = false;
 }
