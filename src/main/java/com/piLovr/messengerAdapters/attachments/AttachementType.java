@@ -1,4 +1,4 @@
-package com.piLovr.messengerAdapters;
+package com.piLovr.messengerAdapters.attachments;
 
 public enum AttachementType {
     TEXT,

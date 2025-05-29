@@ -7,21 +7,16 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.piLovr.messengerAdapters.Socket;
+import com.piLovr.messengerAdapters.adapters.Socket;
 import com.piLovr.messengerAdapters.adapters.Message;
 import com.piLovr.messengerAdapters.adapters.MessageBuilder;
 import it.auties.qr.QrTerminal;
-import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 public class QrHandler implements it.auties.whatsapp.api.QrHandler {
 

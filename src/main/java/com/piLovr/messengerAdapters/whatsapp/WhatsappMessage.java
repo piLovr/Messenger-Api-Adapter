@@ -1,6 +1,5 @@
 package com.piLovr.messengerAdapters.whatsapp;
 
-import com.piLovr.messengerAdapters.Attachment;
 import com.piLovr.messengerAdapters.Platform;
 import com.piLovr.messengerAdapters.adapters.Message;
 import it.auties.whatsapp.model.info.ChatMessageInfo;

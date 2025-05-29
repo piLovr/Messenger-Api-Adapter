@@ -1,11 +1,10 @@
 package com.piLovr.messengerAdapters.whatsapp;
 
-import com.piLovr.messengerAdapters.Socket;
+import com.piLovr.messengerAdapters.adapters.Socket;
 import com.piLovr.messengerAdapters.adapters.Message;
 import com.piLovr.messengerAdapters.adapters.MessageBuilder;
 import it.auties.whatsapp.api.WebHistorySetting;
 import it.auties.whatsapp.api.Whatsapp;
-import it.auties.whatsapp.model.info.ChatMessageInfo;
 
 import java.util.UUID;
 

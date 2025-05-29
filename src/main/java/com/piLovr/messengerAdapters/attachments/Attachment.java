@@ -1,4 +1,4 @@
-package com.piLovr.messengerAdapters;
+package com.piLovr.messengerAdapters.attachments;
 
 import lombok.Getter;
 
@@ -6,6 +6,7 @@ import lombok.Getter;
 public abstract class Attachment {
     protected AttachementType attachementType;
 
+    public Attachment(){
 
-
+    }
 }

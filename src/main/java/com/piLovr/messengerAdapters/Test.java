@@ -1,18 +1,14 @@
 package com.piLovr.messengerAdapters;
 
-import com.piLovr.messengerAdapters.discord.DiscordSocket;
-import com.piLovr.messengerAdapters.whatsapp.WhatsappSocket;
-import it.auties.whatsapp.api.QrHandler;
-import it.auties.whatsapp.api.Whatsapp;
-import it.auties.whatsapp.model.info.ChatMessageInfo;
-
-import java.util.UUID;
+import com.piLovr.messengerAdapters.adapters.Socket;
+import com.piLovr.messengerAdapters.telegram.TelegramSocket;
 
 public class Test {
     public static void main(String[] args) {
         // Example usage of the Socket class
-        //Socket s = new DiscordSocket(System.getenv("BOT_TOKEN"));
-        Socket s = new WhatsappSocket("test");
+        //Socket s = new DiscordSocket(System.getenv("DISCORD_BOT_TOKEN"));
+        //Socket s = new WhatsappSocket("test");
+        Socket s = new TelegramSocket(System.getenv("TELEGRAM_BOT_TOKEN"));
         s.connect();
 
         System.out.println("Connected");

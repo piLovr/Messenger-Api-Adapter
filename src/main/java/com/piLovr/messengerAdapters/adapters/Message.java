@@ -1,6 +1,8 @@
 package com.piLovr.messengerAdapters.adapters;
 
-import com.piLovr.messengerAdapters.Attachment;
+import com.piLovr.messengerAdapters.User;
+import com.piLovr.messengerAdapters.Chat;
+import com.piLovr.messengerAdapters.attachments.Attachment;
 import com.piLovr.messengerAdapters.Platform;
 import lombok.Getter;
 
@@ -11,12 +13,10 @@ import java.util.Set;
 public abstract class Message {
     protected String text;
 
-    protected String chatId;
-    protected String senderId;
+    protected Chat chat;
+    protected User user;
     protected String id;
 
-    protected String pushName;
-    protected Platform platform;
     protected Message quotedMessage;
     protected List<String> mentions;
     protected List<Attachment> attachments;
@@ -31,4 +31,5 @@ public abstract class Message {
     protected void generateVars(){
 
     }
+
 }

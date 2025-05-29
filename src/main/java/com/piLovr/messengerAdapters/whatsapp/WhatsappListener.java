@@ -8,7 +8,7 @@ import it.auties.whatsapp.model.node.Node;
 public class WhatsappListener implements Listener {
     @Override
     public void onNewMessage(Whatsapp whatsapp, MessageInfo<?> incoming) {
-        System.out.println("Message received: " + incoming.toJson());
+        com.piLovr.messengerAdapters.Listener.onMessage(new WhatsappMessage(incoming));
     }
     @Override
     public void onNodeReceived(Whatsapp whatsapp, Node incoming) {

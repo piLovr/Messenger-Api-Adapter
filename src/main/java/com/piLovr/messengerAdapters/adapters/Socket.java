@@ -1,5 +1,6 @@
-package com.piLovr.messengerAdapters;
+package com.piLovr.messengerAdapters.adapters;
 
+import com.piLovr.messengerAdapters.UnifiedSocket;
 import lombok.Getter;
 
 @Getter

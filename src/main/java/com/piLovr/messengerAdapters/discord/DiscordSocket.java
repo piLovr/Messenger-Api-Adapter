@@ -1,11 +1,10 @@
 package com.piLovr.messengerAdapters.discord;
 
-import com.piLovr.messengerAdapters.Socket;
+import com.piLovr.messengerAdapters.adapters.Socket;
 import com.piLovr.messengerAdapters.adapters.Message;
 import com.piLovr.messengerAdapters.adapters.MessageBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
