@@ -41,7 +41,7 @@ public class QrHandler implements it.auties.whatsapp.api.QrHandler {
 
                     // You need to implement sending an image with your MessageBuilder
                     // Example: sock.sendMessage(message.getChatId(), MessageBuilder.withImage(tempFile.toFile()));
-                    sock.sendMessage(message.getChatId(), (MessageBuilder) null);
+                    message.reply((Message) null); //TODO Build qr Message
 
                     Files.deleteIfExists(tempFile);
                 } catch (IOException e) {

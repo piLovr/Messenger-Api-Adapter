@@ -5,6 +5,8 @@ import com.piLovr.messengerAdapters.adapters.Message;
 import com.piLovr.messengerAdapters.adapters.MessageBuilder;
 import it.auties.whatsapp.api.WebHistorySetting;
 import it.auties.whatsapp.api.Whatsapp;
+import it.auties.whatsapp.model.info.MessageInfo;
+import it.auties.whatsapp.model.jid.Jid;
 
 import java.util.UUID;
 
@@ -26,7 +28,7 @@ public class WhatsappSocket extends Socket {
     }
     @Override
     public void connect() {
-        sock.addListener(new WhatsappListener());
+        sock.addListener(new WhatsappListener(this));
         sock.connect().join();
         this.connected = true;
         sock.awaitDisconnection();
@@ -40,12 +42,24 @@ public class WhatsappSocket extends Socket {
     }
 
     @Override
-    public Message sendMessage(String chatId, MessageBuilder messageBuilder) {
+    public Message sendMessage(String chatId, Message messageBuilder) {
+        return null;
+    }
+
+    public Message sendMessage(Jid chatId, Message messageBuilder) {
         return null;
     }
 
     @Override
     public Message sendMessage(String chatId, String text) {
         return null; //sock.sendMessage(chatId, text);
+    }
+
+    public Message sendMessage(Jid chatId, String text) {
+        return new WhatsappMessage(this, sock.sendMessage(chatId, text).join());
+    }
+
+    public Message sendMessage(Jid chatId, String text, MessageInfo<?> quoted) {
+        return new WhatsappMessage(this, sock.sendMessage(chatId, text, quoted).join());
     }
 }

@@ -20,7 +20,7 @@ public class TelegramSocket extends Socket {
     @Override
     public void connect() {
         try {
-            listenerClient.registerBot(token, new TelegramListener());
+            listenerClient.registerBot(token, new TelegramListener(this));
         } catch (TelegramApiException e) {
             throw new RuntimeException("Failed to start Telegram listener client", e);
         }
@@ -33,7 +33,7 @@ public class TelegramSocket extends Socket {
     }
 
     @Override
-    public Message sendMessage(String chatId, MessageBuilder messageBuilder) {
+    public Message sendMessage(String chatId, Message messageBuilder) {
         return null;
     }
 

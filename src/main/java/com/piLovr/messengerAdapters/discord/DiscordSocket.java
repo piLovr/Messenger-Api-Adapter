@@ -37,7 +37,7 @@ public class DiscordSocket extends Socket {
     }
 
     @Override
-    public Message sendMessage(String chatId, MessageBuilder messageBuilder) {
+    public Message sendMessage(String chatId, Message messageBuilder) {
         return null;
     }
 

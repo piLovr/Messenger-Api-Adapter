@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class TelegramListener implements LongPollingSingleThreadUpdateConsumer {
+    private TelegramSocket sock;
+    public TelegramListener(TelegramSocket sock) {
+        this.sock = sock;
+    }
     @Override
     public void consume(List<Update> updates) {
         System.out.println(updates);
@@ -26,14 +30,14 @@ public class TelegramListener implements LongPollingSingleThreadUpdateConsumer {
                 }
             }else{
                 // Handle single message updates
-                Listener.onMessage(new TelegramMessage(update));
+                Listener.onMessage(new TelegramMessage(sock, update));
             }
         }
         for(Map.Entry<String, List<Update>> entry : mediaGroupMap.entrySet()) {
             List<Update> mediaGroupUpdates = entry.getValue();
 
             // Create a TelegramMessage with the media group updates
-            Listener.onMessage(new TelegramMessage(mediaGroupUpdates));
+            Listener.onMessage(new TelegramMessage(sock, mediaGroupUpdates));
         }
         //LongPollingSingleThreadUpdateConsumer.super.consume(updates);
     }

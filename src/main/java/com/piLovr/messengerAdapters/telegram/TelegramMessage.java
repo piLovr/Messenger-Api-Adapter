@@ -8,7 +8,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 public class TelegramMessage extends Message {
-    public TelegramMessage(List<Update> update){
+    //TODO add "lazy loading" for attachments, mentions, quotedMessage
+    private TelegramSocket sock;
+    public TelegramMessage(TelegramSocket sock, List<Update> update){
         Update firstMessage = update.getFirst(); //TODO beten dass das die erste ist, sonst updateId
         //call other constructor for firstMessage
         TelegramMessage first = new TelegramMessage(firstMessage);
@@ -18,7 +20,7 @@ public class TelegramMessage extends Message {
         }
     }
 
-    public TelegramMessage(Update update){
+    public TelegramMessage(TelegramSocket sock, Update update){
         org.telegram.telegrambots.meta.api.objects.message.Message message = update.getMessage();
         new TelegramMessage(message);
     }
@@ -33,6 +35,7 @@ public class TelegramMessage extends Message {
         this.id = String.valueOf(message.getMessageId());
         this.quotedMessage = new TelegramMessage(message.getReplyToMessage());
         this.mentions = null;
+
         /*
         "entities": [
             {
@@ -47,11 +50,21 @@ public class TelegramMessage extends Message {
             }
         ],
         */
-
+        this.attachments = null;
 
     }
 
     private void addAttachment(Update update) {
         //this.attachments.add(new Attachment())
+    }
+
+    @Override
+    public Message reply(Message message) {
+        return null;
+    }
+
+    @Override
+    public Message reply(String text) {
+        return null;
     }
 }

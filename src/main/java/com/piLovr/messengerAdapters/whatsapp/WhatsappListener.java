@@ -6,9 +6,13 @@ import it.auties.whatsapp.model.info.MessageInfo;
 import it.auties.whatsapp.model.node.Node;
 
 public class WhatsappListener implements Listener {
+    private WhatsappSocket sock;
+    public WhatsappListener(WhatsappSocket sock) {
+        this.sock = sock;
+    }
     @Override
     public void onNewMessage(Whatsapp whatsapp, MessageInfo<?> incoming) {
-        com.piLovr.messengerAdapters.Listener.onMessage(new WhatsappMessage(incoming));
+        com.piLovr.messengerAdapters.Listener.onMessage(new WhatsappMessage(sock, incoming));
     }
     @Override
     public void onNodeReceived(Whatsapp whatsapp, Node incoming) {
