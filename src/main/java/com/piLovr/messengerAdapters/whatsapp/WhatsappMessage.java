@@ -44,7 +44,7 @@ public class WhatsappMessage extends Message {
             case AUDIO -> m.audioMessage().get();
             default -> null;
         };*/
-    }//
+    }
 
     @Override
     public Chat getChat() {
