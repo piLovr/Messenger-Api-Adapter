@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "type": "java",
+      "name": "Run Main Class",
+      "request": "launch",
+      "mainClass": "src.main.java.com.piLovr.messengerAdapters.Test",
+      "projectName": "Messenger-Api-Adapter"
+    }
+  ]
+}
