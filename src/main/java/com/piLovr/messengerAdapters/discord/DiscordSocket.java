@@ -1,23 +1,30 @@
 package com.piLovr.messengerAdapters.discord;
 
-import com.piLovr.messengerAdapters.adapters.Socket;
-import com.piLovr.messengerAdapters.adapters.Message;
-import com.piLovr.messengerAdapters.adapters.MessageBuilder;
+import com.piLovr.messengerAdapters.Socket;
+import com.piLovr.messengerAdapters.adapters.ExtendedMessage;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
+import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
+import java.util.Collection;
 import java.util.EnumSet;
 
 public class DiscordSocket extends Socket {
     private JDA sock;
-    private String token;
+    private final String token;
+
+    private CommandListUpdateAction commands;
 
     public DiscordSocket(String token) {
+        super("discord");
         this.token = token;
-        connect();
+    }
+    public DiscordSocket(String token, String alias) {
+        super(alias);
+        this.token = token;
     }
 
     @Override
@@ -26,7 +33,7 @@ public class DiscordSocket extends Socket {
                         GatewayIntent.GUILD_MESSAGES,
                         GatewayIntent.MESSAGE_CONTENT
                 ))
-                .addEventListeners(new DiscordListener())
+                .addEventListeners(new DiscordListener(this))
                 .build();
     }
 
@@ -37,18 +44,44 @@ public class DiscordSocket extends Socket {
     }
 
     @Override
-    public Message sendMessage(String chatId, Message messageBuilder) {
+    public ExtendedMessage sendMessage(String chatId, ExtendedMessage extendedMessageBuilder) {
         return null;
     }
 
     @Override
-    public Message sendMessage(String chatId, String text) {
+    public ExtendedMessage sendMessage(String chatId, String text) {
         MessageChannel channel = sock.getTextChannelById(chatId);
         if(channel == null){
             return null;
+        }//m.queue();
+        return new DiscordExtendedMessage(this, channel.sendMessage(text).complete());
+    }
+
+    public ExtendedMessage sendMessage(MessageChannel channel, ExtendedMessage extendedMessageBuilder){
+        return null; //new DiscordMessage(this, channel.sendMessage(messageBuilder.getText()).complete());
+    }
+
+    public ExtendedMessage sendMessage(MessageChannel channel, String text){
+        return new DiscordExtendedMessage(this, channel.sendMessage(text).complete());
+    }
+
+    public ExtendedMessage sendMessage(MessageChannel channel, String text, String messegeReferenceId) {
+        return new DiscordExtendedMessage(this, channel.sendMessage(text).setMessageReference(messegeReferenceId).complete());
+    }
+
+    public void addSlashCommand(CommandData... commands) {
+        if(commands == null){
+            this.commands = sock.updateCommands();
         }
-        MessageCreateAction m = channel.sendMessage(text);
-        m.queue();
-        return null;
+        this.commands.addCommands(commands);
+        this.commands.queue();
+    }
+
+    public void addSlashCommand(Collection<CommandData> commands) {
+        if(commands == null){
+            this.commands = sock.updateCommands();
+        }
+        this.commands.addCommands(commands);
+        this.commands.queue();
     }
 }

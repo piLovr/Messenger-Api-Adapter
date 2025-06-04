@@ -18,6 +18,6 @@
 - sending messages of various types (text, image, video, audio, file)
 - unified sender objects
 - unified chat/channel/group objects
-- unified message objects (with metadata: quoting, mentioning, etc.)
+- unified extendedMessage objects (with metadata: quoting, mentioning, etc.)
 - unified eventListeners (onMessage, onSocketOpen, onSocketClose, onGroupEvent)
 

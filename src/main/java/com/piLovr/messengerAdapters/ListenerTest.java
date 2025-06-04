@@ -1,14 +1,11 @@
 package com.piLovr.messengerAdapters;
 
-import com.piLovr.messengerAdapters.adapters.Message;
+import com.piLovr.messengerAdapters.adapters.ExtendedMessage;
 
 public class ListenerTest implements Listener{
-    /*
     @Override
-    public void onMessage(Message message) {
-        // Handle the received message
-        System.out.println("Message received: " + message);
+    public void onMessage(ExtendedMessage extendedMessage) {
+        System.out.println("Message received in ListenerTest: " + extendedMessage.toPrettyString());
     }
-
-     */
+     
 }

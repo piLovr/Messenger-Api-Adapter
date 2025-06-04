@@ -15,6 +15,7 @@ public class WhatsappMobileSocket extends WhatsappSocket {
     private long phoneNumber;
 
     public WhatsappMobileSocket(String alias) {
+        super(alias);
         this.sock = Whatsapp.mobileBuilder()
                 .newConnection() //lastConnection
                 // .proxy(URI.create("http://username:password@host:port/")) Remember to set an HTTP proxy

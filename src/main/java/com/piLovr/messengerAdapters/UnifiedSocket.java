@@ -1,11 +1,10 @@
 package com.piLovr.messengerAdapters;
 
-import com.piLovr.messengerAdapters.adapters.Message;
-import com.piLovr.messengerAdapters.adapters.MessageBuilder;
+import com.piLovr.messengerAdapters.adapters.ExtendedMessage;
 
 public interface UnifiedSocket {
     void connect();
     void disconnect();
-    Message sendMessage(String chatId, Message messageBuilder);
-    Message sendMessage(String chatId, String text);
+    ExtendedMessage sendMessage(String chatId, ExtendedMessage extendedMessageBuilder);
+    ExtendedMessage sendMessage(String chatId, String text);
 }

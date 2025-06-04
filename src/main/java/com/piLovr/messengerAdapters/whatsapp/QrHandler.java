@@ -7,9 +7,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.piLovr.messengerAdapters.adapters.Socket;
-import com.piLovr.messengerAdapters.adapters.Message;
-import com.piLovr.messengerAdapters.adapters.MessageBuilder;
+import com.piLovr.messengerAdapters.Socket;
+import com.piLovr.messengerAdapters.adapters.ExtendedMessage;
 import it.auties.qr.QrTerminal;
 
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class QrHandler implements it.auties.whatsapp.api.QrHandler {
 
     }
 
-    public static QrHandler toRemoteAction(Socket sock, Message message) {
+    public static QrHandler toRemoteAction(Socket sock, ExtendedMessage extendedMessage) {
         return new QrHandler() {
             @Override
             public void accept(String qr) {
@@ -41,7 +40,7 @@ public class QrHandler implements it.auties.whatsapp.api.QrHandler {
 
                     // You need to implement sending an image with your MessageBuilder
                     // Example: sock.sendMessage(message.getChatId(), MessageBuilder.withImage(tempFile.toFile()));
-                    message.reply((Message) null); //TODO Build qr Message
+                    extendedMessage.reply((ExtendedMessage) null); //TODO Build qr Message
 
                     Files.deleteIfExists(tempFile);
                 } catch (IOException e) {
