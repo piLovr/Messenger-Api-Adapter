@@ -9,6 +9,10 @@ public interface Listener {
 
     }
 
+    default void onReaction(Message message){
+
+    }
+
     default void onMessageByMe(ExtendedMessage extendedMessage) {
 
     }

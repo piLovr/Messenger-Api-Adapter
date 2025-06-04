@@ -21,6 +21,7 @@ public class DiscordExtendedMessage extends ExtendedMessage {
     }
 
     public void parse(net.dv8tion.jda.api.entities.Message message){
+        this.origin = sock.getAlias();
         this.channel = message.getChannel().asTextChannel(); //TODO: check if this is always a TextChannel
         this.user = new User(message.getAuthor().getId(), message.getAuthor().getName());
         this.chat = new Chat(message.getChannelId(), message.getChannel().getName());

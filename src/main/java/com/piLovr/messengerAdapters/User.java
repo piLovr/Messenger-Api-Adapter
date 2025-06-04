@@ -15,4 +15,8 @@ public class User {
     public String toString() {
         return "User{" + "id='" + id + ", name='" + name + '}';
     }
+
+    public String toJson() {
+        return String.format("{\"id\":\"%s\", \"name\":\"%s\"}", id, name);
+    }
 }

@@ -34,6 +34,7 @@ public class TelegramExtendedMessage extends ExtendedMessage {
     }
 
     private void parse(org.telegram.telegrambots.meta.api.objects.message.Message message) {
+        this.origin = sock.getAlias();
         this.message = message;
         org.telegram.telegrambots.meta.api.objects.User user = message.getFrom();
         org.telegram.telegrambots.meta.api.objects.chat.Chat chat = message.getChat();

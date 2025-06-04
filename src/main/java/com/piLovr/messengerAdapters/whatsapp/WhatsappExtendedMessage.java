@@ -33,6 +33,7 @@ public class WhatsappExtendedMessage extends ExtendedMessage {
     }
 
     public void parse(MessageInfo<?> messageInfo) {
+        this.origin = sock.getAlias();
         senderId = chatMessageInfo.senderJid();
         chatId = chatMessageInfo.chatJid();
 

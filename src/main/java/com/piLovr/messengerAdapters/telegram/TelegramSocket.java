@@ -4,6 +4,8 @@ import com.piLovr.messengerAdapters.Socket;
 import com.piLovr.messengerAdapters.adapters.ExtendedMessage;
 import org.telegram.telegrambots.client.okhttp.OkHttpTelegramClient;
 import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;
+import org.telegram.telegrambots.longpolling.util.DefaultGetUpdatesGenerator;
+import org.telegram.telegrambots.meta.TelegramUrl;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.TelegramClient;
@@ -26,7 +28,7 @@ public class TelegramSocket extends Socket {
     @Override
     public void connect() {
         try {
-            listenerClient.registerBot(token, new TelegramListener(this));
+            listenerClient.registerBot(token, () -> TelegramUrl.DEFAULT_URL, new CustomGetUpdatesGenerator(), new TelegramListener(this));
         } catch (TelegramApiException e) {
             throw new RuntimeException("Failed to start Telegram listener client", e);
         }

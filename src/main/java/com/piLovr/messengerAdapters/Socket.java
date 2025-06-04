@@ -7,10 +7,9 @@ import lombok.Getter;
 import java.util.LinkedList;
 import java.util.List;
 
-@Getter
 public abstract class Socket implements UnifiedSocket {
-    protected String alias;
-    protected boolean connected = false;
+    @Getter protected String alias;
+    @Getter protected boolean connected = false;
     protected List<Listener> listeners;
 
     public Socket(String alias) {
@@ -32,6 +31,12 @@ public abstract class Socket implements UnifiedSocket {
     public void fireOnSlashCommand(Message message) {
         for (Listener listener : listeners) {
             listener.onSlashCommand(message);
+        }
+    }
+
+    public void fireOnReaction(Message message) {
+        for (Listener listener : listeners) {
+            listener.onReaction(message);
         }
     }
 }

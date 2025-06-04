@@ -7,6 +7,7 @@ import lombok.Getter;
 import java.util.List;
 
 public abstract class Message {
+    @Getter protected String origin;
     @Getter protected String text;
 
     @Getter protected Chat chat;
@@ -30,4 +31,14 @@ public abstract class Message {
         return splitLowerCase.get(wordCount++);
     }
     //public abstract Message getChild();
+
+    @Override
+    public String toString() {
+        return String.format("Message{origin='%s', id='%s', text='%s', chat=%s, user=%s}", origin, id, text, chat, user);
+    }
+
+    public String toJson(){
+        return String.format("{\"origin\":\"%s\", \"id\":\"%s\", \"text\":\"%s\", \"chat\":%s, \"user\":%s}",
+                origin, id, text, chat.toJson(), user.toJson());
+    }
 }

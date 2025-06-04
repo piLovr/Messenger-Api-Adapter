@@ -17,4 +17,8 @@ public class Chat {
     public String toString() {
         return "Chat{" + "id='" + id + ", name='" + name + ", description='" + description + '}';
     }
+
+    public String toJson() {
+        return String.format("{\"id\":\"%s\", \"name\":\"%s\", \"description\":\"%s\"}", id, name, description);
+    }
 }

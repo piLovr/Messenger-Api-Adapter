@@ -12,9 +12,10 @@ import java.util.UUID;
 
 public class WhatsappSocket extends Socket {
     protected Whatsapp sock;
+
     public WhatsappSocket(String alias) {
         super(alias);
-        if(!(this instanceof WhatsappMobileSocket)) {
+        if (!(this instanceof WhatsappMobileSocket)) {
             UUID uuid = UUID.fromString("8ffb15c9-c20a-4a8f-9483-7920a530cbd2");
             System.out.println(uuid);
             this.sock = Whatsapp.webBuilder()
@@ -31,8 +32,8 @@ public class WhatsappSocket extends Socket {
         sock.addListener(new WhatsappListener(this));
         sock.connect().join();
         this.connected = true;
-        sock.awaitDisconnection();
-        //new Thread(() -> sock.awaitDisconnection()).start();
+        //sock.awaitDisconnection();
+        new Thread(() -> sock.awaitDisconnection()).start();
         System.out.println("Connected to Whatsapp");
     }
 
@@ -56,9 +57,10 @@ public class WhatsappSocket extends Socket {
     }
 
     public ExtendedMessage sendMessage(Jid chatId, String text) {
-        return new WhatsappExtendedMessage(this, sock.sendMessage(chatId, text).join());
+        return null; //new WhatsappExtendedMessage(this, sock.sendMessage(chatId, text).join());
     }
 
     public ExtendedMessage sendMessage(Jid chatId, String text, MessageInfo<?> quoted) {
         return new WhatsappExtendedMessage(this, sock.sendMessage(chatId, text, quoted).join());
     }
+}

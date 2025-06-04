@@ -14,24 +14,27 @@ public class TelegramListener implements LongPollingSingleThreadUpdateConsumer {
     }
     @Override
     public void consume(List<Update> updates) {
-        System.out.println(updates.toString());
 
         //check if 2 updates have the same message.mediaGroupId
         //if so, merge them into one message with multiple attachments
         Map<String, List<Update>> mediaGroupMap = new HashMap<>();
         for(Update update : updates) {
-            if(!update.hasMessage()) return;
-            if (update.getMessage().getMediaGroupId() != null) {
-                if(!mediaGroupMap.containsKey(update.getMessage().getMediaGroupId())) {
-                    mediaGroupMap.put(update.getMessage().getMediaGroupId(), new java.util.ArrayList<>());
+            if(update.hasMessage()){
+                if (update.getMessage().getMediaGroupId() != null) {
+                    if(!mediaGroupMap.containsKey(update.getMessage().getMediaGroupId())) {
+                        mediaGroupMap.put(update.getMessage().getMediaGroupId(), new java.util.ArrayList<>());
+                    }else{
+                        mediaGroupMap.get(update.getMessage().getMediaGroupId()).add(update);
+                    }
                 }else{
-                    mediaGroupMap.get(update.getMessage().getMediaGroupId()).add(update);
+                    // Handle single message updates
+                    TelegramExtendedMessage m = new TelegramExtendedMessage(sock, update);
+                    sock.fireOnMessage(m);
                 }
-            }else{
-                // Handle single message updates
-                TelegramExtendedMessage m = new TelegramExtendedMessage(sock, update);
-                sock.fireOnMessage(m);
+            }else if(update.getMessageReaction() != null){
+                sock.fireOnReaction();
             }
+
         }
         for(Map.Entry<String, List<Update>> entry : mediaGroupMap.entrySet()) {
             List<Update> mediaGroupUpdates = entry.getValue();

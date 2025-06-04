@@ -43,8 +43,4 @@ public abstract class ExtendedMessage extends Message {
     public abstract ExtendedMessage reply(ExtendedMessage extendedMessage);
     public abstract ExtendedMessage reply(String text);
     public abstract ExtendedMessage replyWithQuote(String text);
-
-    public String toPrettyString() {
-        return String.format("Message{id='%s', text='%s', chat=%s, user=%s}", id, text, chat, user);
-    }
 }
