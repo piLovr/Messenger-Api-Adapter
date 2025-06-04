@@ -29,10 +29,7 @@ public class DiscordSocket extends Socket {
 
     @Override
     public void connect() {
-        sock = JDABuilder.createLight(token, EnumSet.of(
-                        GatewayIntent.GUILD_MESSAGES,
-                        GatewayIntent.MESSAGE_CONTENT
-                ))
+        sock = JDABuilder.createLight(token, EnumSet.allOf(GatewayIntent.class))
                 .addEventListeners(new DiscordListener(this))
                 .build();
     }

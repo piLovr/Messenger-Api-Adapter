@@ -26,8 +26,7 @@ public class CustomGetUpdatesGenerator implements Function<Integer, GetUpdates> 
         allowedUpdates.add("chat_member");
         allowedUpdates.add("chat_join_request");
 
-        /*
-        allowedUpdates.add("update_id");
+
         allowedUpdates.add("channel_post");
         allowedUpdates.add("edited_channel_post");
         allowedUpdates.add("business_connection");
@@ -47,7 +46,7 @@ public class CustomGetUpdatesGenerator implements Function<Integer, GetUpdates> 
 
         allowedUpdates.add("chat_boost");
         allowedUpdates.add("removed_chat_boost");
-         */
+
         // You can add more allowed updates as needed
 
         return GetUpdates

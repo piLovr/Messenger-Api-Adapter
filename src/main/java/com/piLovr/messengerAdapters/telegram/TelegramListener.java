@@ -14,7 +14,7 @@ public class TelegramListener implements LongPollingSingleThreadUpdateConsumer {
     }
     @Override
     public void consume(List<Update> updates) {
-
+        System.out.println(updates);
         //check if 2 updates have the same message.mediaGroupId
         //if so, merge them into one message with multiple attachments
         Map<String, List<Update>> mediaGroupMap = new HashMap<>();
@@ -32,7 +32,7 @@ public class TelegramListener implements LongPollingSingleThreadUpdateConsumer {
                     sock.fireOnMessage(m);
                 }
             }else if(update.getMessageReaction() != null){
-                sock.fireOnReaction();
+                //sock.fireOnReaction();
             }
 
         }
