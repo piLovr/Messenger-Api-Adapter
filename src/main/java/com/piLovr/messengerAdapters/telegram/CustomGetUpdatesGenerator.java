@@ -18,6 +18,7 @@ public class CustomGetUpdatesGenerator implements Function<Integer, GetUpdates> 
 
     @Override
     public GetUpdates apply(Integer lastReceivedUpdate) {
+
         allowedUpdates.add("message");
         allowedUpdates.add("edited_message");
         allowedUpdates.add("message_reaction");
@@ -26,7 +27,7 @@ public class CustomGetUpdatesGenerator implements Function<Integer, GetUpdates> 
         allowedUpdates.add("chat_member");
         allowedUpdates.add("chat_join_request");
 
-
+        /*
         allowedUpdates.add("channel_post");
         allowedUpdates.add("edited_channel_post");
         allowedUpdates.add("business_connection");
@@ -46,7 +47,7 @@ public class CustomGetUpdatesGenerator implements Function<Integer, GetUpdates> 
 
         allowedUpdates.add("chat_boost");
         allowedUpdates.add("removed_chat_boost");
-
+        */
         // You can add more allowed updates as needed
 
         return GetUpdates
