@@ -7,19 +7,18 @@ import it.auties.whatsapp.api.WebHistorySetting;
 import it.auties.whatsapp.api.Whatsapp;
 import it.auties.whatsapp.model.info.MessageInfo;
 import it.auties.whatsapp.model.jid.Jid;
+import it.auties.whatsapp.model.message.standard.StickerMessageBuilder;
 
 import java.util.UUID;
 
 public class WhatsappSocket extends Socket {
-    protected Whatsapp sock;
+    public Whatsapp sock;
 
     public WhatsappSocket(String alias) {
         super(alias);
         if (!(this instanceof WhatsappMobileSocket)) {
-            UUID uuid = UUID.fromString("8ffb15c9-c20a-4a8f-9483-7920a530cbd2");
-            System.out.println(uuid);
             this.sock = Whatsapp.webBuilder()
-                    .newConnection(uuid)
+                    .newConnection(alias)
                     .historySetting(WebHistorySetting.discard(false))
                     .unregistered(QrHandler.toTerminal());
 
@@ -43,7 +42,7 @@ public class WhatsappSocket extends Socket {
     }
 
     @Override
-    public ExtendedMessage sendMessage(String chatId, ExtendedMessage extendedMessageBuilder) {
+    public ExtendedMessage sendMessage(String chatId, ExtendedMessage extendedMessage) {
         return null;
     }
 

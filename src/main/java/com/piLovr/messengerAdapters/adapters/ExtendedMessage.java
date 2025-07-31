@@ -14,6 +14,7 @@ public abstract class ExtendedMessage extends Message {
     protected ExtendedMessage quotedMessage;
     protected List<String> mentions;
     protected List<Attachment> attachments;
+    protected List<Attachment> attachmentTypes;
 
     protected Set<String> who;
     @Getter protected String prefix;

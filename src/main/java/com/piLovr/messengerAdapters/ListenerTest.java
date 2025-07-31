@@ -1,6 +1,7 @@
 package com.piLovr.messengerAdapters;
 
 import com.piLovr.messengerAdapters.adapters.ExtendedMessage;
+import com.piLovr.messengerAdapters.adapters.Message;
 
 public class ListenerTest implements Listener{
     @Override
@@ -12,7 +13,7 @@ public class ListenerTest implements Listener{
         }
     }
     @Override
-    public void onReaction(com.piLovr.messengerAdapters.adapters.Message message) {
+    public void onReaction(Message message) {
         System.out.println("Reaction received in ListenerTest: " + message.toString());
     }
      
