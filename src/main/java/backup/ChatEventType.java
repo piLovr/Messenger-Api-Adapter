@@ -1,0 +1,5 @@
+package backup;
+
+public enum ChatEventType {
+    PROMOTE, DEMOTE, ADD, REMOVE, CHANGE_SUBJECT, CHANGE_DESCRIPTION, CHANGE_PICTURE
+}
