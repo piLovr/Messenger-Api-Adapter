@@ -93,9 +93,9 @@
 
         <!-- https://repo.maven.apache.org/maven2/com/github/auties00/cobalt/ -->
         <dependency>
-            <groupId>com.github.pilovr</groupId>
+            <groupId>com.github.auties00</groupId>
             <artifactId>cobalt</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </dependency>
     </dependencies>
 

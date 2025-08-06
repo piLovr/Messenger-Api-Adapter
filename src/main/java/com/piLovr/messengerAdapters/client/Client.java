@@ -1,12 +1,18 @@
 package com.piLovr.messengerAdapters.client;
 
+
+import com.piLovr.messengerAdapters.listener.Listener;
+import com.piLovr.messengerAdapters.message.Message;
+
 public interface Client {
     void connect();
     void disconnect();
-    ExtendedMessage sendMessage(String chatId, String text);
-    ExtendedMessage sendMessage(String chatId, ExtendedMessage message);
+    Message sendMessage(String chatId, String text);
+    Message sendMessage(String chatId, Message message);
 
-    void addListener(MessageListener listener);
+    void addListener(Listener listener);
+    void removeListener(Listener listener);
+
     String getAlias();
     boolean isConnected();
 }

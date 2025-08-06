@@ -13,10 +13,6 @@ import it.auties.whatsapp.model.message.model.Message;
 import it.auties.whatsapp.model.message.model.MessageContainer;
 import it.auties.whatsapp.model.message.standard.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,21 +46,21 @@ public class WhatsappExtendedMessage extends ExtendedMessage {
         }
 
         //Test
-        if(messageType.equals(Message.Type.IMAGE)){
+        if(messageType.equals(Message.Type.IMAGE) || messageType.equals(Message.Type.VIDEO)) {
             //try {
-                ImageMessage imageMessage = (ImageMessage) messageInfo.message().content();
+                //ImageMessage imageMessage = (ImageMessage) messageInfo.message().content();
                 //byte[] media = sock.sock.downloadMedia(imageMessage).join(); // -> Failed to download media or media: java.lang.IllegalStateException: Unexpected plaintext length
                 byte[] media = sock.sock.downloadMedia(chatMessageInfo); // -> Failed to download media or media: it.auties.whatsapp.exception.RequestException: Node timed out: Node[description=receipt, attributes={id=3ACB3D861265CB26BE1A, type=server-error, to=420732472268@s.whatsapp.net}...
                 System.out.println(media);
                 previewMedia(media, "/home/pilovr/Messenger-Api-Adapter/test.jpeg");
-                previewMedia(jpegToWebp(media), "/home/pilovr/Messenger-Api-Adapter/test.webp");
+                previewMedia(convertToWebp(media, messageType.equals(Message.Type.VIDEO)), "/home/pilovr/Messenger-Api-Adapter/test.webp");
                 if (media == null || media.length == 0) {
                     System.err.println("Failed to download media or media is empty.");
                     return;
                 }
 
                 SimpleStickerMessageBuilder smb = new SimpleStickerMessageBuilder()
-                        .media(jpegToWebp(media))
+                        .media(convertToWebp(media, messageType.equals(Message.Type.VIDEO)))
                         .animated(false);
 
                 sock.sock.sendMessage(chatMessageInfo.chatJid(), smb.build());
@@ -105,31 +101,60 @@ public class WhatsappExtendedMessage extends ExtendedMessage {
         System.out.println("File saved at: " + Path.of(filename).toString());
     }
 
-    public static byte[] jpegToWebp(byte[] jpegBytes) {
-        // Register WebP plugin
-        try {
-            Class.forName("com.luciad.imageio.webp.WebP");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public static byte[] convertToWebp(byte[] jpegBytes, boolean animated) {
+        Path tempInputFile;
+        Path tempOutputFile;
 
-        // Read JPEG bytes
-        BufferedImage image = null;
+        //create temp file
         try {
-            image = ImageIO.read(new ByteArrayInputStream(jpegBytes));
+            tempInputFile = Files.createTempFile("input", ".jpeg");
+            tempOutputFile = Files.createTempFile("output", ".webp");
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to create temp files", e);
+        }
+        //write in temp file
+        try {
+            Files.write(tempInputFile, jpegBytes);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to write to temp input file", e);
+        }
+        //create output temp file
+
+        //close output temp file
+
+        //run exec stuff
+
+        try {
+            String toExec;
+            if(animated){
+                toExec = "ffmpeg -i " + tempInputFile + " -vcodec libwebp -filter:v fps=20,scale=512:512:force_original_aspect_ratio=decrease,format=rgba,pad=512:512:-1:-1:color=black@0.0 -loop 0 -ss 0 -t 5 -an -preset default -y " + tempOutputFile;
+            }else {
+                toExec = "cwebp " + tempInputFile + " -o " + tempOutputFile;
+            }
+            System.out.println("Executing: " + toExec);
+            Process process = Runtime.getRuntime().exec(toExec);
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                System.err.println("Failed to convert JPEG to WebP, exit code: " + exitCode);
+                throw new RuntimeException("Failed to convert JPEG to WebP, exit code: " + exitCode);
+            } else {
+                System.out.println("Successfully converted JPEG to WebP");
+            }
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (image == null) throw new IllegalArgumentException("Invalid JPEG data");
 
-        // Write as WebP
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //delete input file
         try {
-            ImageIO.write(image, "webp", out);
+            byte[] outputBytes = Files.readAllBytes(tempOutputFile);
+            Files.deleteIfExists(tempInputFile);
+            Files.deleteIfExists(tempOutputFile);
+            return outputBytes;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to read or delete temp files", e);
         }
-        return out.toByteArray();
     }
     private String getTextByType(Message.Type type) {
         /**

@@ -1,0 +1,9 @@
+package com.piLovr.messengerAdapters.event;
+
+import com.piLovr.messengerAdapters.messengerStructures.Account;
+import com.piLovr.messengerAdapters.messengerStructures.Room;
+
+public abstract class RoomEvent extends Event {
+    private Account sender;
+    private Room room;
+}
