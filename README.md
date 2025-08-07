@@ -1,4 +1,4 @@
-This Project is a work in Progress. Feel free to contribute.
+This Project is a work in Progress (and not ready for use!). Feel free to contribute.
 
 ### Naming Convention
 I put a lot of thought into how to name Objects like Groups, Channels, Guilds, Communities, since they represent similar structures, but are called different among different messengers/platforms.
