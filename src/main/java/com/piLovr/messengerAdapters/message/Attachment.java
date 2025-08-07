@@ -1,4 +1,4 @@
 package com.piLovr.messengerAdapters.message;
 
-public abstract class Attachement {
+public abstract class Attachment {
 }

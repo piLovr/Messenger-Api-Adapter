@@ -55,6 +55,12 @@
             <version>2.24.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <!-- https://repo.maven.apache.org/maven2/com/discord4j/discord4j-core/ -->
         <dependency>
             <groupId>net.dv8tion</groupId>
