@@ -9,6 +9,7 @@ Clients with working connection:
 - [x] Whatsapp
 - [ ] Discord
 - [ ] Telegram
+
 Listener Events:
 - [ ] Message
 - [ ] Room (Group-) Events (promote, demote, image updates)
