@@ -9,6 +9,8 @@ Clients with working connection:
 - [x] Whatsapp
 - [ ] Discord
 - [ ] Telegram
+- [ ] (optional) Matrix
+- [ ] (optional) Signal
 
 Listener Events:
 - [ ] Message
