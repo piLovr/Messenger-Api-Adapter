@@ -14,6 +14,7 @@ Listener Events:
 - [ ] Message
 - [ ] Room (Group-) Events (promote, demote, image updates)
 - [ ] System updates
+
 Other stuff:
 - [ ] Client Error handling
 - [ ] General Error handling
