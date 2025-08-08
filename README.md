@@ -1,75 +1,44 @@
-# MESSENGER-API-ADAPTER
+This Project is a work in Progress (and not ready for use!). Feel free to contribute.
 
-Connect, Communicate, Conquer: Messaging Made Effortless
+### Naming Convention
+I put a lot of thought into how to name Objects like Groups, Channels, Guilds, Communities, since they represent similar structures, but are called different among different messengers/platforms.
+If you have different thoughts about how to name things, feel free to tell me by opening an issue.
 
-last-commit repo-top-language repo-language-count
-Built with the tools and technologies:
+### Progress (and maybe what's to come)
+Clients with working connection:
+- [x] Whatsapp
+- [ ] Discord
+- [ ] Telegram
+- [ ] (optional) Matrix
+- [ ] (optional) Signal
 
-Markdown XML
+Listener Events:
+- [ ] Message
+- [ ] Room (Group-) Events (promote, demote, image updates)
+- [ ] System updates
 
-Table of Contents
+Other stuff:
+- [ ] Client Error handling
+- [ ] General Error handling
+- [ ] Logger
+- [ ] Message Objects
+- [ ] Specific Message Objects (Poll, Location,...)
+- [ ] Media attachments in Messages
+- [ ] Room Objects
+- [ ] Optional Cache for GroupMetadata and Members
+- [ ] Roles in Rooms (Admin, Custom Discord roles)
+- [ ] Optional specific roles (could be useful for stuff like CommandBots)
+- [ ] Optional CommandHandler Structure (ready-to use for Commandbots)
+- [ ] Maven tests for various events
+- [ ] Maven tests for various messageTypes
+- [ ] Optional transfer to SpringBoot with RESTful Api for sending Messages
 
-- Overview
-  - Getting Started
-  - Prerequisites
-  - Installation
-  - Usage
-  - Testing
-  - Overview
+### Credits:
+#### Client API's
+- [Cobalt - Whatsapp](https://github.com/Auties00/Cobalt)
+- [JDA - Discord](https://github.com/discord-jda/JDA)
+- Signal
+- Telegram
+- Matrix
 
-Messenger-Api-Adapter is a powerful tool designed to streamline communication across multiple messaging platforms through a unified API.
 
-## Why Messenger-Api-Adapter?
-
-This project simplifies the integration of messaging services, allowing developers to focus on building features rather than managing complex APIs. The core features include:
-
-📡 Unified API: Seamlessly connect with WhatsApp, Discord, Telegram, and Signal through a single interface.
-
-📦 Consistent Object Models: Enhance code readability and maintainability with unified representations for senders, chats, and messages.
-
-⚙️ Modular Architecture: Easily extend the system to support new features or additional messaging platforms.
-
-⚡ Real-Time Message Handling: Facilitate immediate communication, improving user engagement and responsiveness.
-
-📄 Diverse Attachment Support: Enable sharing of various content types, including documents, media, and contacts, enriching user interactions.
-
-## Getting Started
-
-### Prerequisites
-
-This project requires the following dependencies:
-
-Programming Language: Java
-Package Manager: Maven
-### Installation
-
-Build Messenger-Api-Adapter from the source and intsall dependencies:
-
-Clone the repository:
-
-```
-git clone https://github.com/piLovr/Messenger-Api-Adapter
-```
-Navigate to the project directory:
-
-Install the dependencies:
-
-Using maven:
-```
-mvn install
-```
-### Usage
-
-Run the project with:
-
-Using maven:
-
-mvn exec:java
-Testing
-
-Messenger-api-adapter uses the {test_framework} test framework. Run the test suite with:
-
-Using maven:
-
-mvn test
-⬆ Return
